@@ -24,9 +24,8 @@ hs_err_pid*
 
 # Manual
 local.properties
-.gradle
+.gradle/
 .nb-gradle/
-**/*.dylib
 /Hexgrid-API/build/
 /Hexgrid-Editor/build/
 *.log
