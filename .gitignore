@@ -22,14 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Manual
-local.properties
-.gradle/
-.nb-gradle/
-/Hexgrid-API/build/
-/Hexgrid-Editor/build/
-*.log
+# Manual ignore
 *.so
-/Hexgrid-API/
-/Hexgrid-Editor/
-/jmb-hexgrid/
+.gradle
+.settings
+/gradle/*
+.classpath
+.project
+gradlew
+gradlew.bat
