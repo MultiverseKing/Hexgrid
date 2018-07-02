@@ -4,34 +4,46 @@
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'eclipse'
 
 String mavenGroupId = 'org.multiverseking.hexgrid'
 String mavenVersion = '1.0-SNAPSHOT'
 
+group = 'org.multiverseking.hexgrid'
+version = '1.0.1'
+
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-		jmonkeyengine_version = 'v3.2.1-stable'
-                slf4j = '1.7.25'
+	jmonkeyengine_version = 'v3.2.1-stable'
+    slf4j = '1.7.25'
 }
 
 repositories {
-    mavenCentral();
+    //mavenCentral();
     // You may define additional repositories, or even remove "mavenCentral()".
     // Read more about repositories here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories		
-    maven { url "https://jitpack.io" }
+    //maven { url "https://jitpack.io" }
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     // Adding dependencies here will add the dependencies to each subproject.
     testCompile group: 'junit', name: 'junit', version: '4.10'
     compile "com.github.jMonkeyEngine.jMonkeyEngine:jme3-core:$jmonkeyengine_version"
+    compile "com.github.jMonkeyEngine.jMonkeyEngine:jme3-core:$jmonkeyengine_version"
     compile "com.github.jMonkeyEngine.jMonkeyEngine:jme3-desktop:$jmonkeyengine_version"
     compile "com.github.jMonkeyEngine.jMonkeyEngine:jme3-lwjgl:$jmonkeyengine_version"
     compile "com.github.jMonkeyEngine.jMonkeyEngine:jme3-effects:$jmonkeyengine_version"
     compile fileTree(dir: '../libs', include: ['*.jar'])
+    compile fileTree(dir: './libs', include: ['*.jar'])
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     compile group: 'org.slf4j', name: 'slf4j-api', version: slf4j
 }
@@ -44,6 +56,11 @@ version = mavenVersion
 task sourcesJar(type: Jar, dependsOn: classes, description: 'Creates a jar from the source files.') {
     classifier = 'sources'
     from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
@@ -73,4 +90,14 @@ sourceSets {
 		java { srcDir 'src'}
 		resources { srcDir 'assets' }
 	}
+}
+
+eclipse {
+	classpath {
+		downloadSources=true
+	 }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
 }

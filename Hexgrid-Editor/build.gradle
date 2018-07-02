@@ -9,9 +9,8 @@
 // Note however, that you may define your own "run" and "debug" task if you
 // prefer. In this case NetBeans will not add these tasks but you may rely on
 // your own implementation.
-if (!hasProperty('mainClass')) {
-    ext.mainClass = 'org.hexgridapi.editor.core.EditorMain'
-}
+ext.mainClass = 'org.multiverseking.hexgridapi.editor.core.EditorMain'
+description = 'Standalone editor for Hexgrid-API'
 
 dependencies {
     // TODO: Add dependencies here
@@ -24,5 +23,4 @@ dependencies {
     compile project(':Hexgrid-API')
     // https://mvnrepository.com/artifact/org.jdesktop/beansbinding
     compile group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
-
 }
